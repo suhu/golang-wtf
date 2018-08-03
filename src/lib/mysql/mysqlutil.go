@@ -5,35 +5,7 @@ import (
 	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/what-the-fake/src/lib/models"
 )
-
-func GetSites() ([]*models.SiteData, error) {
-
-	db := GetDbConnection()
-
-	rows, err := db.Query("select * from websitedata.website where sitename like '%site%'")
-
-	sites := make([]*models.SiteData, 0)
-
-	if err != nil {
-		return nil, err
-	}
-
-	for rows.Next() {
-
-		site := new(models.SiteData)
-		err := rows.Scan(&site.Id)
-		if err != nil {
-			return nil, err
-		}
-		sites = append(sites, site)
-	}
-
-	defer db.Close()
-
-	return sites, nil
-}
 
 func GetDbConnection() *sql.DB {
 

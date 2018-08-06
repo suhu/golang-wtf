@@ -5,7 +5,9 @@ import (
 	"github.com/what-the-fake/src/lib/mysql"
 )
 
-func GetSites(name string) ([]*models.SiteData, error) {
+type Repository struct{}
+
+func (r Repository) GetSites(name string) ([]*models.SiteData, error) {
 
 	db := mysqlutil.GetDbConnection()
 

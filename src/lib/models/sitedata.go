@@ -5,21 +5,21 @@ import (
 )
 
 type SiteData struct {
-	Id           int
-	Country      string
-	Domain       string
-	Name         string
-	Organization string
-	Address      string
-	Postalcode   string
-	Email        string
-	IPAddress    string
-	Phone        string
-	Phone2       string
-	Fax          string
-	Outcome      string
-	CreatedDate  date.Date
-	ExpiresDate  date.Date
+	Id           int       `json:"id"`
+	Country      string    `json:"country"`
+	Domain       string    `json:"domain"`
+	Name         string    `json:"name"`
+	Organization string    `json:"organization"`
+	Address      string    `json:"address"`
+	Postalcode   string    `json:"postalcode"`
+	Email        string    `json:"email"`
+	IPAddress    string    `json:"ipaddress"`
+	Phone        string    `json:"phone"`
+	Phone2       string    `json:"phone2"`
+	Fax          string    `json:"fax"`
+	Outcome      string    `json:"outcome"`
+	CreatedDate  date.Date `json:"createddate"`
+	ExpiresDate  date.Date `json:"expiresdate"`
 }
 
 type User struct {

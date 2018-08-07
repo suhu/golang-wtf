@@ -32,8 +32,9 @@ var routes = Routes{
 	Route{
 		"SearchSites",
 		"GET",
-		"/search",
-		controllerapi.AuthenticationMiddleware(controller.SearchSites),
+		"/search/{query}",
+		//controllerapi.AuthenticationMiddleware(controller.SearchSites),
+		controller.SearchSites,
 	}}
 
 // Get Product by {id}

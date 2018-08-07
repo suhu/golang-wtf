@@ -1,39 +1,21 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"os"
+	"net/http"
 
-	"github.com/what-the-fake/src/lib/models"
-	"github.com/what-the-fake/src/lib/repo"
+	"github.com/gorilla/handlers"
+	"github.com/what-the-fake/src/lib/router"
 )
 
 func main() {
 
 	// Get the "PORT" env variable
-	port := os.Getenv("PORT")
+	routerEngine := router.NewRouter()
 
-	if port == "" {
-		log.Fatal("$PORT must be set")
-	}
+	allowedOrigins := handlers.AllowedOrigins([]string{"*"})
+	allowedMethods := handlers.AllowedMethods([]string{"GET", "POST"})
 
-	sites, err := getAllSites("%.com%")
+	log.Fatal(http.ListenAndServe(":3000", handlers.CORS(allowedOrigins, allowedMethods)(routerEngine)))
 
-	for _, site := range sites {
-		fmt.Println(site.Domain)
-	}
-
-	if err != nil {
-		fmt.Println("error")
-		panic(err.Error())
-	}
-
-}
-
-func getAllSites(name string) ([]*models.SiteData, error) {
-
-	sites, err := repo.GetSites(name)
-
-	return sites, err
 }

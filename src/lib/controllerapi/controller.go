@@ -78,13 +78,13 @@ func (c *Controller) SearchSites(w http.ResponseWriter, r *http.Request) {
 	query := vars["query"] // param query
 	log.Println("Search Query - " + query)
 
-	products, error := c.Repository.GetSites(query)
+	sites, error := c.Repository.GetSites("%" + query + "%")
 
 	if error != nil {
 		log.Fatalln("Error search sites")
 	}
 
-	data, _ := json.Marshal(products)
+	data, _ := json.Marshal(sites)
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
